@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour 
+{
 	public float speed = 25.0F;
 	public float jumpSpeed = 8.0F; 
 	public float gravity = 20.0F;
