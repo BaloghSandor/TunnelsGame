@@ -5,18 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour 
 {
 	public float speed = 25.0F;
+	public float runningSpeed = 35.0f;
 	public float jumpSpeed = 8.0F; 
 	public float gravity = 20.0F;
 	private Vector3 moveDirection = Vector3.zero;
 	private float turner;
 	private float looker;
 	public float sensitivity = 5.0f;
-	
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		CharacterController controller = GetComponent<CharacterController>();
@@ -28,9 +23,14 @@ public class PlayerController : MonoBehaviour
 			//Multiply it by speed.
 			moveDirection *= speed;
 			//Jumping
-			if (Input.GetButton("Jump"))
+			if (Input.GetButton("Jump")){
 				moveDirection.y = jumpSpeed;
-			
+			}
+			if (Input.GetButton("Run")){
+				speed = runningSpeed;
+			} else {
+				speed = 25.0F;
+			}
 		}
 		turner = Input.GetAxis ("Mouse X")* sensitivity;
 		looker = -Input.GetAxis ("Mouse Y")* sensitivity;
