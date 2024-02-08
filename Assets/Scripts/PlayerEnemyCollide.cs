@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerEnemyCollide : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //Detect collisions between the GameObjects with Colliders attached
+    void OnCollisionEnter(Collision collision)
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //Check for a match with the specific tag on any GameObject that collides with your GameObject
+        if (collision.gameObject.tag == "Ennemy")
+        {
+            //If the GameObject has the same tag as specified, output this message in the console
+            Debug.Log("Collision detected!");
+        }
     }
 }
