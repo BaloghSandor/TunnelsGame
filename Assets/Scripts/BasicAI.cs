@@ -5,7 +5,6 @@ using UnityEngine;
 public class BasicAI : MonoBehaviour
 {
     public float speed = 11.0F;
-    public GameObject Player;
 
     // Update is called once per frame
     void Update()

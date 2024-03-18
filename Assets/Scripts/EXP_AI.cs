@@ -20,5 +20,9 @@ public class EXP_AI : MonoBehaviour
         } else{
             Debug.Log("Hit nothing");
         }
+
+
+
+        transform.LookAt(Vector3.zero);
     }
 }
