@@ -33,7 +33,11 @@
             },
             {
                 "type": "System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+<<<<<<< HEAD
                 "key": "experimental.enabled",
+=======
+                "key": "editor.toolbarIconGUI",
+>>>>>>> 43e1648e391fd4cb07ef08c0c32ef0931817954c
                 "value": "{\"m_Value\":false}"
             }
         ]
