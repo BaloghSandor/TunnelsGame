@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 131568855}
   - component: {fileID: 131568854}
   - component: {fileID: 131568853}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 262421623}
   - component: {fileID: 262421622}
   m_Layer: 7
-  m_Name: Door_test
+  m_Name: Door_test_render
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -433,13 +433,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262421621}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -48.522, y: 1.453, z: 26.14}
-  m_LocalScale: {x: 0.22518, y: 2.6567113, z: 1.7061038}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.2500001}
+  m_LocalScale: {x: 1, y: 1, z: 0.49999994}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 400097958}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1674100315}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &324454815 stripped
 Transform:
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 400097961}
   - component: {fileID: 400097960}
   - component: {fileID: 400097959}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1445,6 +1445,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7716598144843329989, guid: 886b46a15d2bc6e4bbf853b73f03c2eb,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716598144843329989, guid: 886b46a15d2bc6e4bbf853b73f03c2eb,
+        type: 3}
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
@@ -1803,6 +1808,60 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 4daede88740f0e54783de6b63d99e9d8, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &1674100313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1674100315}
+  - component: {fileID: 1674100314}
+  - component: {fileID: 1674100316}
+  m_Layer: 7
+  m_Name: Door_test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!33 &1674100314
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674100313}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1674100315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674100313}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -48, y: 1.5, z: 25.15}
+  m_LocalScale: {x: 0.2, y: 2.5, z: 3.4}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 262421625}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1674100316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674100313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6e5dca05edc6b4ea97702918e688ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4755341387731241272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1917,4 +1976,4 @@ SceneRoots:
   - {fileID: 1393793767}
   - {fileID: 4755341387731241272}
   - {fileID: 1191171475}
-  - {fileID: 262421625}
+  - {fileID: 1674100315}
