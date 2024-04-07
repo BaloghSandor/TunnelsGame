@@ -12,9 +12,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player_Interaction
+  - Level_Object
+  - Monster_Collision
   - 
   - 
   - 

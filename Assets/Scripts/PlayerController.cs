@@ -72,13 +72,5 @@ public class PlayerController : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
-
-        RaycastHit hit;
-        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit, 30.0f)) {
-            Transform objectHit = hit.transform;
-            Debug.Log("Object hit");
-        }
     }
 }
