@@ -6,13 +6,13 @@ public class DoorInteractionScript : MonoBehaviour
 {
 
     private bool toggle = false;
-    private bool rotation = false;
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             toggle = true;
+            Debug.Log("Collision hit!");
         }
     }
 
@@ -20,12 +20,7 @@ public class DoorInteractionScript : MonoBehaviour
     {
         if (toggle && Input.GetKeyDown(KeyCode.E))
         {
-            rotation = true;
-        }
-
-        if (rotation)
-        {
-            gameObject.transform.Rotate(0, 0, -90);
+            gameObject.transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
         }
     }
 }
