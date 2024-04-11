@@ -21,6 +21,7 @@ public class DoorInteractionScript : MonoBehaviour
         if (toggle && Input.GetKeyDown(KeyCode.E))
         {
             gameObject.transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 0.85f);
         }
     }
 }
