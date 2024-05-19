@@ -10,7 +10,7 @@ public class Generator_script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(GeneratorFailTimer(Random.Range(10, 10)));
+        StartCoroutine(GeneratorFailTimer(Random.Range(10, 120)));
     }
 
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class Generator_script : MonoBehaviour
     {
         if (launch_new_coroutine)
         {
-            StartCoroutine(GeneratorFailTimer(Random.Range(10, 10)));
+            StartCoroutine(GeneratorFailTimer(Random.Range(10, 120)));
         }
     }
 
