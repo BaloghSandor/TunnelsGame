@@ -454,8 +454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf6e5dca05edc6b4ea97702918e688ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorAnim: {fileID: 0}
-  doorOpen: 0
 --- !u!4 &324454815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6280019927514635964, guid: 886b46a15d2bc6e4bbf853b73f03c2eb,
@@ -1382,6 +1380,21 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 1323939433291401128, guid: d8927bd0641c5b54c8ac802854ef1adf,
+        type: 3}
+      propertyPath: m_AutoBraking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323939433291401128, guid: d8927bd0641c5b54c8ac802854ef1adf,
+        type: 3}
+      propertyPath: m_Acceleration
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323939433291401128, guid: d8927bd0641c5b54c8ac802854ef1adf,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 360
+      objectReference: {fileID: 0}
     - target: {fileID: 2868514453450732288, guid: d8927bd0641c5b54c8ac802854ef1adf,
         type: 3}
       propertyPath: player
@@ -1513,17 +1526,17 @@ PrefabInstance:
     - target: {fileID: 6280019927514635964, guid: 886b46a15d2bc6e4bbf853b73f03c2eb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47
+      value: 23.5
       objectReference: {fileID: 0}
     - target: {fileID: 6280019927514635964, guid: 886b46a15d2bc6e4bbf853b73f03c2eb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.86
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 6280019927514635964, guid: 886b46a15d2bc6e4bbf853b73f03c2eb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25
+      value: -30.9
       objectReference: {fileID: 0}
     - target: {fileID: 6280019927514635964, guid: 886b46a15d2bc6e4bbf853b73f03c2eb,
         type: 3}

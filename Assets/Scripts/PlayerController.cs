@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 
@@ -13,6 +14,9 @@ public class PlayerController : MonoBehaviour
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
+    public int maxStamina = 100;
+    public int currentStamina;
+    public Stamina_Bar_Script stamina_bar;
     Ray RayOrigin;
     RaycastHit HitInfo;
 
@@ -26,6 +30,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        currentStamina = maxStamina;
+        stamina_bar.SetMaxStamina(maxStamina);
 
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -71,6 +77,17 @@ public class PlayerController : MonoBehaviour
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        }
+
+        while (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            MinusStamina(1);
+        }
+
+        void MinusStamina(int stam_loss)
+        {
+            currentStamina -= stam_loss;
+            stamina_bar.SetStamina(currentStamina);
         }
     }
 }

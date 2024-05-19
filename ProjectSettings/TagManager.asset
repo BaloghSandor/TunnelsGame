@@ -16,7 +16,7 @@ TagManager:
   - Level_Object
   - Monster_Collision
   - PlayerAttributes
-  - 
+  - Non_walkable_(AI)
   - 
   - 
   - 
