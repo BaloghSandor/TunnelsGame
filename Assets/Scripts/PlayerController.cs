@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float maxStamina = 100f;
     public float minStamina = 0f;
     public float currentStamina;
+    private bool stamina_recovery = false;
     public Stamina_Bar_Script stamina_bar;
     Ray RayOrigin;
     RaycastHit HitInfo;
@@ -81,14 +82,20 @@ public class PlayerController : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
 
+        // Stamina:
+
+        stamina_bar.SetStamina(currentStamina);
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            MinusStamina(5f);
+            MinusStamina(15f);
+            stamina_recovery = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             InstaMinusStamina(15f);
+            stamina_recovery = false;
         }
 
         void MinusStamina(float stam_loss)
@@ -113,6 +120,30 @@ public class PlayerController : MonoBehaviour
         {
             runningSpeed = 17.5f;
             jumpSpeed = 8f;
+        }
+
+        // Stamina Recovery
+
+        if (currentStamina < 100f)
+        {
+            stamina_recovery = true;   
+        }
+
+        if (stamina_recovery)
+        {
+            StaminaRecover(5f);
+        }
+
+        if (currentStamina >= 100f)
+        {
+            stamina_recovery = false;
+            currentStamina = 100f;
+        }
+
+        void StaminaRecover(float stam_recovery_value)
+        {
+            currentStamina += stam_recovery_value * Time.deltaTime;
+            stamina_bar.SetStamina(currentStamina);
         }
     }
 }
