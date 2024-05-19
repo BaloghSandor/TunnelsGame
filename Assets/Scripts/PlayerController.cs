@@ -14,8 +14,9 @@ public class PlayerController : MonoBehaviour
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
-    public int maxStamina = 100;
-    public int currentStamina;
+    public float maxStamina = 100f;
+    public float minStamina = 0f;
+    public float currentStamina;
     public Stamina_Bar_Script stamina_bar;
     Ray RayOrigin;
     RaycastHit HitInfo;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         currentStamina = maxStamina;
         stamina_bar.SetMaxStamina(maxStamina);
+        stamina_bar.SetMinStamina(minStamina);
 
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -79,15 +81,38 @@ public class PlayerController : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
 
-        while (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            MinusStamina(1);
+            MinusStamina(5f);
         }
 
-        void MinusStamina(int stam_loss)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            currentStamina -= stam_loss;
+            InstaMinusStamina(15f);
+        }
+
+        void MinusStamina(float stam_loss)
+        {
+            currentStamina -= stam_loss * Time.deltaTime;
             stamina_bar.SetStamina(currentStamina);
+        }
+        
+        void InstaMinusStamina(float insta_stam_loss)
+        {
+            currentStamina -= insta_stam_loss;
+            stamina_bar.SetStamina(currentStamina);
+        }
+
+        if (currentStamina <= 0f)
+        {
+            runningSpeed = walkingSpeed;
+            jumpSpeed = 0f;
+            currentStamina = 0f;
+        }
+        else
+        {
+            runningSpeed = 17.5f;
+            jumpSpeed = 8f;
         }
     }
 }

@@ -7,13 +7,18 @@ public class Stamina_Bar_Script : MonoBehaviour
 {
     public Slider slider;
 
-    public void SetMaxStamina(int stamina)
+    public void SetMaxStamina(float stamina)
     {
         slider.maxValue = stamina;
         slider.value = stamina;
     }
 
-    public void SetStamina(int stamina)
+    public void SetMinStamina(float stamina)
+    {
+        slider.minValue = stamina;
+    }
+
+    public void SetStamina(float stamina)
     {
         slider.value = stamina;
     }

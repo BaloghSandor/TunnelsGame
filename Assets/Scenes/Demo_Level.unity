@@ -1714,6 +1714,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6280019927514635961, guid: 886b46a15d2bc6e4bbf853b73f03c2eb,
         type: 3}
+      propertyPath: stamina_bar
+      value: 
+      objectReference: {fileID: 910992712}
+    - target: {fileID: 6280019927514635961, guid: 886b46a15d2bc6e4bbf853b73f03c2eb,
+        type: 3}
       propertyPath: runningSpeed
       value: 13.5
       objectReference: {fileID: 0}
