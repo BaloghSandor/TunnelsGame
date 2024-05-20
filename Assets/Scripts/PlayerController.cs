@@ -125,9 +125,9 @@ public class PlayerController : MonoBehaviour
 
         if (currentStamina <= 0f)
         {
-            runningSpeed = walkingSpeed;
-            jumpSpeed = 0f;
+            stamina_recovery = false;
             currentStamina = 0f;
+            StartCoroutine(MovementCooldown(5f));
         }
         else
         {
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
         // Stamina Recovery
 
-        if (currentStamina < 100f)
+        if (currentStamina < 100f && currentStamina > 0f)
         {
             stamina_recovery = true;   
         }
@@ -194,5 +194,13 @@ public class PlayerController : MonoBehaviour
         {
             currentHealth = 0f;
         }
+    }
+
+    IEnumerator MovementCooldown(float cooldown_time)
+    {
+        runningSpeed = walkingSpeed;
+        jumpSpeed = 0f;
+        yield return new WaitForSeconds(cooldown_time);
+        stamina_recovery = true;
     }
 }
