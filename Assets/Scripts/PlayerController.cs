@@ -14,17 +14,23 @@ public class PlayerController : MonoBehaviour
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
+
     public float maxStamina = 100f;
     public float minStamina = 0f;
     public float currentStamina;
     private bool stamina_recovery = false;
     public Stamina_Bar_Script stamina_bar;
-    Ray RayOrigin;
-    RaycastHit HitInfo;
+
+    public float maxHealth = 100f;
+    public float minHealth = 0f;
+    public float currentHealth;
+    public Health_Bar_Script health_bar;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
+
+    public Generator_script generator;
 
     [HideInInspector]
     public bool canMove = true;
@@ -32,9 +38,14 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+
         currentStamina = maxStamina;
         stamina_bar.SetMaxStamina(maxStamina);
         stamina_bar.SetMinStamina(minStamina);
+
+        currentHealth = maxHealth;
+        health_bar.SetMaxHealth(maxHealth);
+        health_bar.SetMinHealth(minHealth);
 
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -82,6 +93,7 @@ public class PlayerController : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
 
+
         // Stamina:
 
         stamina_bar.SetStamina(currentStamina);
@@ -101,13 +113,11 @@ public class PlayerController : MonoBehaviour
         void MinusStamina(float stam_loss)
         {
             currentStamina -= stam_loss * Time.deltaTime;
-            stamina_bar.SetStamina(currentStamina);
         }
         
         void InstaMinusStamina(float insta_stam_loss)
         {
             currentStamina -= insta_stam_loss;
-            stamina_bar.SetStamina(currentStamina);
         }
 
         if (currentStamina <= 0f)
@@ -143,7 +153,29 @@ public class PlayerController : MonoBehaviour
         void StaminaRecover(float stam_recovery_value)
         {
             currentStamina += stam_recovery_value * Time.deltaTime;
-            stamina_bar.SetStamina(currentStamina);
+        }
+
+        // Health:
+
+        health_bar.SetHealth(currentHealth);
+
+        if (generator.gen_failure)
+        {
+            Damage(6f);
+        }
+        else if (!generator.gen_failure && currentHealth < 100f)
+        {
+            HealthRecovery(3f);
+        }
+
+        void Damage(float health_amount_deduction)
+        {
+            currentHealth -= health_amount_deduction * Time.deltaTime;
+        }
+
+        void HealthRecovery(float recovery_points)
+        {
+            currentHealth += recovery_points * Time.deltaTime;
         }
     }
 }
