@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public float maxHealth = 100f;
     public float minHealth = 0f;
     public float currentHealth;
+    private bool health_recovery = false;
     public Health_Bar_Script health_bar;
 
     CharacterController characterController;
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour
     float rotationX = 0;
 
     public Generator_script generator;
+
+    public Timer_script timer;
 
     [HideInInspector]
     public bool canMove = true;
@@ -163,9 +166,18 @@ public class PlayerController : MonoBehaviour
         {
             Damage(6f);
         }
-        else if (!generator.gen_failure && currentHealth < 100f)
+        else if (!generator.gen_failure && currentHealth < 100f && health_recovery)
         {
             HealthRecovery(3f);
+        }
+        else if (timer.TimeLeft == 0f)
+        {
+            InstaDeath();
+        }
+
+        if (currentHealth == 0f)
+        {
+            health_recovery = false;
         }
 
         void Damage(float health_amount_deduction)
@@ -176,6 +188,11 @@ public class PlayerController : MonoBehaviour
         void HealthRecovery(float recovery_points)
         {
             currentHealth += recovery_points * Time.deltaTime;
+        }
+
+        void InstaDeath()
+        {
+            currentHealth = 0f;
         }
     }
 }

@@ -10,7 +10,7 @@ public class Generator_script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(GeneratorFailTimer(Random.Range(10, 120)));
+        StartCoroutine(GeneratorFailTimer(Random.Range(10, 60)));
     }
 
     // Update is called once per frame
@@ -18,15 +18,13 @@ public class Generator_script : MonoBehaviour
     {
         if (launch_new_coroutine)
         {
-            StartCoroutine(GeneratorFailTimer(Random.Range(10, 120)));
+            StartCoroutine(GeneratorFailTimer(Random.Range(10, 60)));
         }
     }
 
     IEnumerator GeneratorFailTimer(int time_until_failure)
     {
         launch_new_coroutine = false;
-
-        Debug.Log("Waiting Time:" + time_until_failure);
 
         yield return new WaitForSeconds(time_until_failure);
 
