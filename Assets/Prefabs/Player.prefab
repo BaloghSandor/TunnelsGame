@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 6280019927514635960}
   - component: {fileID: 6280019927514635961}
   - component: {fileID: 6280019927514635967}
+  - component: {fileID: 3439991113117477866}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -354,6 +355,15 @@ MonoBehaviour:
   playerCamera: {fileID: 6280019926242575810}
   lookSpeed: 2
   lookXLimit: 45
+  maxStamina: 100
+  minStamina: 0
+  currentStamina: 0
+  stamina_bar: {fileID: 0}
+  maxHealth: 100
+  minHealth: 0
+  currentHealth: 0
+  health_bar: {fileID: 0}
+  generator: {fileID: 0}
   canMove: 1
 --- !u!143 &6280019927514635967
 CharacterController:
@@ -381,3 +391,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3439991113117477866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6280019927514635958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e841a80c24b57a4286a9af553640dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeLeft: 300
+  TimerOn: 1
+  TimerTxt: {fileID: 0}
