@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,22 +14,22 @@ public class PlayerController : MonoBehaviour
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
+    CharacterController characterController;
+    Vector3 moveDirection = Vector3.zero;
+    float rotationX = 0;
 
     public float maxStamina = 100f;
     public float minStamina = 0f;
     public float currentStamina;
     private bool stamina_recovery = false;
     public Stamina_Bar_Script stamina_bar;
-
+    
     public float maxHealth = 100f;
     public float minHealth = 0f;
     public float currentHealth;
-    private bool health_recovery = false;
-    public Health_Bar_Script health_bar;
 
-    CharacterController characterController;
-    Vector3 moveDirection = Vector3.zero;
-    float rotationX = 0;
+    private bool health_recovery = true;
+    public Health_Bar_Script health_bar;
 
     public Generator_script generator;
 
@@ -96,7 +96,6 @@ public class PlayerController : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
 
-
         // Stamina:
 
         stamina_bar.SetStamina(currentStamina);
@@ -117,7 +116,7 @@ public class PlayerController : MonoBehaviour
         {
             currentStamina -= stam_loss * Time.deltaTime;
         }
-        
+
         void InstaMinusStamina(float insta_stam_loss)
         {
             currentStamina -= insta_stam_loss;
@@ -125,9 +124,9 @@ public class PlayerController : MonoBehaviour
 
         if (currentStamina <= 0f)
         {
-            stamina_recovery = false;
+            runningSpeed = walkingSpeed;
+            jumpSpeed = 0f;
             currentStamina = 0f;
-            StartCoroutine(MovementCooldown(5f));
         }
         else
         {
@@ -137,7 +136,7 @@ public class PlayerController : MonoBehaviour
 
         // Stamina Recovery
 
-        if (currentStamina < 100f && currentStamina > 0f)
+        if (currentStamina < 100f)
         {
             stamina_recovery = true;   
         }
@@ -166,18 +165,26 @@ public class PlayerController : MonoBehaviour
         {
             Damage(6f);
         }
+
         else if (!generator.gen_failure && currentHealth < 100f && health_recovery)
         {
             HealthRecovery(3f);
         }
+
         else if (timer.TimeLeft == 0f)
         {
             InstaDeath();
         }
 
-        if (currentHealth == 0f)
+        if (currentHealth <= 0f)
         {
             health_recovery = false;
+            currentHealth = 0f;
+        }
+
+        void InstaDeath()
+        {
+            currentHealth = 0f;
         }
 
         void Damage(float health_amount_deduction)
@@ -189,18 +196,5 @@ public class PlayerController : MonoBehaviour
         {
             currentHealth += recovery_points * Time.deltaTime;
         }
-
-        void InstaDeath()
-        {
-            currentHealth = 0f;
-        }
-    }
-
-    IEnumerator MovementCooldown(float cooldown_time)
-    {
-        runningSpeed = walkingSpeed;
-        jumpSpeed = 0f;
-        yield return new WaitForSeconds(cooldown_time);
-        stamina_recovery = true;
     }
 }
