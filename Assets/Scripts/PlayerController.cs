@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
 
     public Timer_script timer;
 
+    private bool ground_check;
+
     [HideInInspector]
     public bool canMove = true;
 
@@ -195,6 +197,22 @@ public class PlayerController : MonoBehaviour
         void HealthRecovery(float recovery_points)
         {
             currentHealth += recovery_points * Time.deltaTime;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            ground_check = true;
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            ground_check = false;
         }
     }
 }
