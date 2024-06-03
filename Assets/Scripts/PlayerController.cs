@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     public Timer_script timer;
 
-    private bool ground_check;
+    public Demo_Drop_off_script demo_level;
 
     [HideInInspector]
     public bool canMove = true;
@@ -163,14 +163,17 @@ public class PlayerController : MonoBehaviour
 
         health_bar.SetHealth(currentHealth);
 
-        if (generator.gen_failure)
+        if(!demo_level.first_demo_level_finished)
         {
-            Damage(6f);
+            if (generator.gen_failure)
+            {
+                Damage(12f);
+            }
         }
 
         else if (!generator.gen_failure && currentHealth < 100f && health_recovery)
         {
-            HealthRecovery(3f);
+            HealthRecovery(5f);
         }
 
         else if (timer.TimeLeft == 0f)
@@ -198,21 +201,7 @@ public class PlayerController : MonoBehaviour
         {
             currentHealth += recovery_points * Time.deltaTime;
         }
-    }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            ground_check = true;
-        }
-    }
-
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            ground_check = false;
-        }
+        
     }
 }
