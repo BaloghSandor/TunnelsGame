@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
 {
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 17.5f;
-    public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
@@ -69,23 +67,6 @@ public class PlayerController : MonoBehaviour
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
-        {
-            moveDirection.y = jumpSpeed;
-        }
-        else
-        {
-            moveDirection.y = movementDirectionY;
-        }
-
-        // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
-        // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
-        // as an acceleration (ms^-2)
-        if (!characterController.isGrounded)
-        {
-            moveDirection.y -= gravity * Time.deltaTime;
-        }
-
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
 
@@ -127,13 +108,11 @@ public class PlayerController : MonoBehaviour
         if (currentStamina <= 0f)
         {
             runningSpeed = walkingSpeed;
-            jumpSpeed = 0f;
             currentStamina = 0f;
         }
         else
         {
             runningSpeed = 17.5f;
-            jumpSpeed = 8f;
         }
 
         // Stamina Recovery
