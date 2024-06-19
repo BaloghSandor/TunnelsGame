@@ -9,6 +9,8 @@ public class Inventory_Toolbar_script : MonoBehaviour
     public bool item_2 = false;
     public bool item_3 = false;
     public bool item_4 = false;
+    public GameObject toolbar;
+    public Demo_Drop_off_script demo_level;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,11 @@ public class Inventory_Toolbar_script : MonoBehaviour
         if(item_count <= 0)
         {
             item_count = 0;
+        }
+
+        if(demo_level.first_demo_level_finished)
+        {
+            toolbar.gameObject.SetActive(false);
         }
     }
 }

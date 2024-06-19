@@ -9,12 +9,12 @@ public class Generator_script : MonoBehaviour
     public int min_time = 60;
     public int max_time = 60;
 
-    public Demo_Drop_off_script demo_level;
+    public First_Demo_Level_Doors_script demo_level;
 
     // Update is called once per frame
     void Update()
     {
-        if(!demo_level.first_demo_level_finished)
+        if(demo_level.Demo_level_one)
         {
             if (launch_new_coroutine)
             {
@@ -27,10 +27,13 @@ public class Generator_script : MonoBehaviour
 
     IEnumerator GeneratorFailTimer(int time_until_failure)
     {
-        launch_new_coroutine = false;
+        if(demo_level.Demo_level_one)
+        {
+            launch_new_coroutine = false;
 
-        yield return new WaitForSeconds(time_until_failure);
+            yield return new WaitForSeconds(time_until_failure);
 
-        gen_failure = true;
+            gen_failure = true;
+        }
     }
 }
