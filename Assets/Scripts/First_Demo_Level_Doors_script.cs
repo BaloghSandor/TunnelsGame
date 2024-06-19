@@ -7,6 +7,7 @@ public class First_Demo_Level_Doors_script : MonoBehaviour
     public Demo_Drop_off_script first_level;
     public Trigger_second_level_script triggered;
     public bool Demo_level_one = true;
+    public bool Second_level = false;
     public GameObject door;
 
     // Update is called once per frame
@@ -21,6 +22,7 @@ public class First_Demo_Level_Doors_script : MonoBehaviour
             first_level.first_demo_level_finished = false;
             door.transform.GetChild(0).gameObject.SetActive(true);
             Demo_level_one = false;
+            Second_level = true;
         }
     }
 }

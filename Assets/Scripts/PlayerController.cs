@@ -89,20 +89,9 @@ public class PlayerController : MonoBehaviour
             stamina_recovery = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            InstaMinusStamina(15f);
-            stamina_recovery = false;
-        }
-
         void MinusStamina(float stam_loss)
         {
             currentStamina -= stam_loss * Time.deltaTime;
-        }
-
-        void InstaMinusStamina(float insta_stam_loss)
-        {
-            currentStamina -= insta_stam_loss;
         }
 
         if (currentStamina <= 0f)
