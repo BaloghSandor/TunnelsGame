@@ -7,6 +7,8 @@ public class Timer_script : MonoBehaviour
     public bool TimerOn = false;
 
     public Text TimerTxt;
+
+    public First_Demo_Level_Doors_script demo_level;
    
     void Start()
     {
@@ -27,6 +29,12 @@ public class Timer_script : MonoBehaviour
                 TimeLeft = 0;
                 TimerOn = false;
             }
+        }
+
+        if(!demo_level.Demo_level_one)
+        {
+            TimerTxt.enabled = false;
+            TimeLeft = 1;
         }
     }
 

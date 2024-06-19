@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     public Timer_script timer;
 
-    public Demo_Drop_off_script demo_level;
+    public First_Demo_Level_Doors_script demo_level;
 
     [HideInInspector]
     public bool canMove = true;
@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
         health_bar.SetHealth(currentHealth);
 
-        if(!demo_level.first_demo_level_finished)
+        if(demo_level.Demo_level_one)
         {
             if (generator.gen_failure)
             {
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
             HealthRecovery(5f);
         }
 
-        else if (timer.TimeLeft == 0f)
+        else if (timer.TimeLeft == 0f && demo_level.Demo_level_one)
         {
             InstaDeath();
         }

@@ -22,18 +22,17 @@ public class Generator_script : MonoBehaviour
             }
         }else{
             gen_failure = false;
+            launch_new_coroutine = false;
+            StopCoroutine("GeneratorFailTimer");
         }
     }
 
     IEnumerator GeneratorFailTimer(int time_until_failure)
     {
-        if(demo_level.Demo_level_one)
-        {
-            launch_new_coroutine = false;
+        launch_new_coroutine = false;
 
-            yield return new WaitForSeconds(time_until_failure);
+        yield return new WaitForSeconds(time_until_failure);
 
-            gen_failure = true;
-        }
+        gen_failure = true;
     }
 }
