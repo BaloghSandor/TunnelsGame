@@ -17,7 +17,7 @@ public class Monster_spawning_script : MonoBehaviour
     private int position_z_3 = -12;
     
     public int min_spawn_time = 1;
-    public int max_spawn_time = 11;
+    public int max_spawn_time = 26;
 
     private int spawn_location = 0;
 
