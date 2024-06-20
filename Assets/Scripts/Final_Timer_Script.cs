@@ -5,28 +5,26 @@ using UnityEngine.UI;
 
 public class Final_Timer_Script : MonoBehaviour
 {
-    public float FinalTimeLeft;
-    public bool FinalTimerOn = false;
+    public float FinalTimeLeft = 72f;
 
     public Text FinalTimerTxt;
-   
-    void Start()
-    {
-        FinalTimerOn = true;
-    }
+
+    public First_Demo_Level_Doors_script first_level;
 
     void Update()
     {
-        if(FinalTimeLeft > 0)
+        if(first_level.Second_level)
         {
+            if(FinalTimeLeft > 0)
+            {
             FinalTimeLeft -= Time.deltaTime;
             updateTimer(FinalTimeLeft);
-        }
-        else
-        {
+            }
+            else
+            {
             FinalTimeLeft = 0;
-            FinalTimerOn = false;
-        }
+            }
+        } 
     }
 
     void updateTimer(float currentTime)

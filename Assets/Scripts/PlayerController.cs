@@ -35,8 +35,30 @@ public class PlayerController : MonoBehaviour
 
     public First_Demo_Level_Doors_script demo_level;
 
+    public GameObject monster;
+
+    private bool monster_interaction = false;
+
+    public Monster_kill_collision_script second_level_kill_condition;
+
     [HideInInspector]
     public bool canMove = true;
+
+   void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject == monster)
+        {
+            monster_interaction = true;
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject == monster)
+        {
+            monster_interaction = false;
+        }
+    }  
 
     void Start()
     {
@@ -155,6 +177,11 @@ public class PlayerController : MonoBehaviour
             currentHealth = 0f;
         }
 
+        if(monster_interaction || second_level_kill_condition.game_over)
+        {
+            InstaDeath();
+        }
+
         void InstaDeath()
         {
             currentHealth = 0f;
@@ -169,7 +196,5 @@ public class PlayerController : MonoBehaviour
         {
             currentHealth += recovery_points * Time.deltaTime;
         }
-
-        
     }
 }

@@ -6,6 +6,7 @@ public class Second_level_light_script : MonoBehaviour
 {
     public Light Lighting; // Reference to the Light component
     public Monster_spawning_script monster;
+    public Final_escape_door second_level;
 
     void Start()
     {
@@ -14,7 +15,7 @@ public class Second_level_light_script : MonoBehaviour
 
     void Update()
     {
-        if (monster.monster_spawn)
+        if (monster.monster_spawn_barrage && !second_level.Second_level_finished)
         {
             Lighting.color = Color.red;
         }

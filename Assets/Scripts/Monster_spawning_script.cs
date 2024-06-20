@@ -16,17 +16,17 @@ public class Monster_spawning_script : MonoBehaviour
     private int position_x_3 = 96;
     private int position_z_3 = -12;
     
-    public int min_spawn_time = 1;
-    public int max_spawn_time = 26;
+    public int spawn_time = 12;
 
     private int spawn_location = 0;
 
-    public int monster_speed = -4;
+    public int monster_speed = -5;
 
     private float step;
 
     public bool launch_spawn_timer = true;
-    public bool monster_spawn = false;
+    private bool monster_spawn = false;
+    public bool monster_spawn_barrage = false;
     private bool monster_engaging = false;
 
     public First_Demo_Level_Doors_script demo_level;
@@ -36,6 +36,9 @@ public class Monster_spawning_script : MonoBehaviour
     public GameObject SecurityDoor1;
     public GameObject SecurityDoor2;
     public GameObject SecurityDoor3;
+
+    public Final_Timer_Script final_timer;
+    public Final_escape_door second_level;
 
     void OnCollisionEnter(Collision collision)
     {
@@ -56,7 +59,6 @@ public class Monster_spawning_script : MonoBehaviour
     void Start()
     {
         gameObject.transform.position = new Vector3(idle_position_x, 0, idle_position_z);
-        step = monster_speed * Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -66,7 +68,12 @@ public class Monster_spawning_script : MonoBehaviour
         {
             if(launch_spawn_timer)
             {
-                StartCoroutine(MonsterSpawnTimer(Random.Range(min_spawn_time, max_spawn_time)));
+                StartCoroutine(MonsterSpawnTimer(spawn_time));
+            }
+
+            if(monster_spawn_barrage)
+            {
+                monster_spawn = true;
             }
 
             if(interaction)
@@ -77,20 +84,19 @@ public class Monster_spawning_script : MonoBehaviour
             if(monster_spawn && spawn_location == 0)
             {
                 int random_number = Random.Range(1, 4);
-                Debug.Log(random_number);
                 spawn_location = random_number;
             }
             
             if(!monster_spawn)
             {
                 monster_engaging = false;
-                launch_spawn_timer = true;
                 spawn_location = 0;
             }
 
             if(spawn_location == 0)
             {
                 gameObject.transform.position = new Vector3(idle_position_x, 5, idle_position_z);
+                monster_engaging = false;
             }
             else if(spawn_location == 1 && !monster_engaging)
             {
@@ -107,13 +113,16 @@ public class Monster_spawning_script : MonoBehaviour
                 gameObject.transform.position = new Vector3(position_x_3, 5, position_z_3);
                 monster_engaging = true;
             }
+        }else if(final_timer.FinalTimeLeft == 0 || second_level.Second_level_finished){
+            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
     void FixedUpdate()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
-        if(monster_engaging)
+        if(monster_engaging && !second_level.Second_level_finished)
         {
             if(spawn_location == 1)
             {
@@ -135,5 +144,6 @@ public class Monster_spawning_script : MonoBehaviour
         yield return new WaitForSeconds(time_until_spawn);
 
         monster_spawn = true;
+        monster_spawn_barrage = true;
     }
 }
