@@ -17,11 +17,11 @@ public class Monster_spawning_script : MonoBehaviour
     private int position_z_3 = -12;
     
     public int min_spawn_time = 1;
-    public int max_spawn_time = 2;
+    public int max_spawn_time = 11;
 
     private int spawn_location = 0;
 
-    public float monster_speed = 0.008f;
+    public int monster_speed = -4;
 
     private float step;
 
@@ -33,16 +33,20 @@ public class Monster_spawning_script : MonoBehaviour
 
     private bool interaction = false;
 
+    public GameObject SecurityDoor1;
+    public GameObject SecurityDoor2;
+    public GameObject SecurityDoor3;
+
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Security_door")
+        if (collision.gameObject == SecurityDoor1 || collision.gameObject == SecurityDoor2 || collision.gameObject == SecurityDoor3)
         {
             interaction = true;
         }
     }
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Security_door")
+        if (collision.gameObject == SecurityDoor1 || collision.gameObject == SecurityDoor2 || collision.gameObject == SecurityDoor3)
         {
             interaction = false;
         }
@@ -68,18 +72,20 @@ public class Monster_spawning_script : MonoBehaviour
             if(interaction)
             {
                 monster_spawn = false;
-                Debug.Log("Collision!");
             }
 
-            if(monster_spawn && !monster_engaging)
+            if(monster_spawn && spawn_location == 0)
             {
-                spawn_location = Random.Range(1, 4);
+                int random_number = Random.Range(1, 4);
+                Debug.Log(random_number);
+                spawn_location = random_number;
             }
             
             if(!monster_spawn)
             {
                 monster_engaging = false;
                 launch_spawn_timer = true;
+                spawn_location = 0;
             }
 
             if(spawn_location == 0)
@@ -101,28 +107,25 @@ public class Monster_spawning_script : MonoBehaviour
                 gameObject.transform.position = new Vector3(position_x_3, 5, position_z_3);
                 monster_engaging = true;
             }
+        }
+    }
 
-            if(monster_engaging)
+    void FixedUpdate()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if(monster_engaging)
+        {
+            if(spawn_location == 1)
             {
-                if(spawn_location == 1)
-                {
-                    transform.position -= new Vector3(0f,0f,monster_speed); 
-                }
-                else if(spawn_location == 2)
-                {
-                    transform.position -= new Vector3(monster_speed,0f,0f);
-                }
-                else if(spawn_location == 3)
-                {
-                    transform.position -= new Vector3(monster_speed,0f,0f);
-                }
-            } else
+                rb.velocity = new Vector3(0, 0, monster_speed);
+            }else if(spawn_location == 2 || spawn_location == 3)
             {
-                spawn_location = 0;
+                rb.velocity = new Vector3(monster_speed, 0, 0);
             }
         }
-
-
+        else{
+            rb.velocity = new Vector3(0,0,0);
+        }
     }
 
     IEnumerator MonsterSpawnTimer(int time_until_spawn)

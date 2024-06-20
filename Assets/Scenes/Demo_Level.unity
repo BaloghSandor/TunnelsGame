@@ -889,10 +889,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 46.855038, y: 1, z: 1}
+  m_Center: {x: -22.927519, y: 0, z: 0}
 --- !u!23 &105466497
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -955,7 +955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c922412c1709ee46b95c454c9a173d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monster_object: {fileID: 0}
+  monster_object: {fileID: 1443755518}
 --- !u!1 &135168185
 GameObject:
   m_ObjectHideFlags: 0
@@ -3270,7 +3270,7 @@ MonoBehaviour:
   inventory: {fileID: 1422173221}
   drop_off: {fileID: 319122239}
   item_dropped_off: 0
-  first_demo_level_finished: 0
+  first_demo_level_finished: 1
 --- !u!65 &319122241
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4278,10 +4278,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 52.14733, y: 1, z: 1}
+  m_Center: {x: -25.57367, y: 0, z: -2.8039162e-16}
 --- !u!23 &414155712
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4344,7 +4344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c922412c1709ee46b95c454c9a173d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monster_object: {fileID: 0}
+  monster_object: {fileID: 1443755518}
 --- !u!1 &416509873
 GameObject:
   m_ObjectHideFlags: 0
@@ -7473,10 +7473,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 38.8183, y: 1, z: 1}
+  m_Center: {x: -18.90915, y: 0, z: 0}
 --- !u!23 &617184552
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7539,7 +7539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c922412c1709ee46b95c454c9a173d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monster_object: {fileID: 0}
+  monster_object: {fileID: 1443755518}
 --- !u!1 &619772632
 GameObject:
   m_ObjectHideFlags: 0
@@ -15854,7 +15854,7 @@ GameObject:
   - component: {fileID: 1443755518}
   m_Layer: 0
   m_Name: Monster
-  m_TagString: Untagged
+  m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15873,7 +15873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   min_spawn_time: 1
   max_spawn_time: 2
-  monster_speed: 0.025
+  monster_speed: 0.008
   launch_spawn_timer: 1
   monster_spawn: 0
   demo_level: {fileID: 939879145}
