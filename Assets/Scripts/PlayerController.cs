@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
             currentHealth = 0f;
         }
 
-        if(currentHealth == 0f)
+        if(currentHealth == 0f || second_level_kill_condition.game_over)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
