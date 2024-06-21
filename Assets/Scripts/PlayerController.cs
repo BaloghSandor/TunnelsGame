@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 
@@ -40,6 +41,8 @@ public class PlayerController : MonoBehaviour
     private bool monster_interaction = false;
 
     public Monster_kill_collision_script second_level_kill_condition;
+
+    public Finishing_room_collision_script game;
 
     [HideInInspector]
     public bool canMove = true;
@@ -161,12 +164,12 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        else if (!generator.gen_failure && currentHealth < 100f && health_recovery)
+        if (!generator.gen_failure && currentHealth < 100f && health_recovery)
         {
             HealthRecovery(5f);
         }
 
-        else if (timer.TimeLeft == 0f && demo_level.Demo_level_one)
+        if (!timer.TimerOn && demo_level.Demo_level_one)
         {
             InstaDeath();
         }
@@ -177,10 +180,28 @@ public class PlayerController : MonoBehaviour
             currentHealth = 0f;
         }
 
+        if(currentHealth == 0f)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            MoveToScene(2);
+        }
+
         if(monster_interaction || second_level_kill_condition.game_over)
         {
             InstaDeath();
         }
+
+        //Win
+
+        if(game.game_finished)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            MoveToScene(3);
+        }
+
+        //functions
 
         void InstaDeath()
         {
@@ -195,6 +216,11 @@ public class PlayerController : MonoBehaviour
         void HealthRecovery(float recovery_points)
         {
             currentHealth += recovery_points * Time.deltaTime;
+        }
+
+        void MoveToScene(int sceneID)
+        {
+            SceneManager.LoadScene(sceneID);
         }
     }
 }

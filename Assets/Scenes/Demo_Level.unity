@@ -3366,7 +3366,7 @@ MonoBehaviour:
   inventory: {fileID: 1422173221}
   drop_off: {fileID: 319122239}
   item_dropped_off: 0
-  first_demo_level_finished: 1
+  first_demo_level_finished: 0
 --- !u!65 &319122241
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5160,7 +5160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a532d7e4456334dae0e0530b660de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FinalTimeLeft: 2
+  FinalTimeLeft: 72
   FinalTimerTxt: {fileID: 936142244}
   first_level: {fileID: 939879145}
 --- !u!1 &448248647
@@ -6343,6 +6343,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6280019927514635961, guid: 886b46a15d2bc6e4bbf853b73f03c2eb,
         type: 3}
+      propertyPath: game
+      value: 
+      objectReference: {fileID: 1183777844}
+    - target: {fileID: 6280019927514635961, guid: 886b46a15d2bc6e4bbf853b73f03c2eb,
+        type: 3}
       propertyPath: timer
       value: 
       objectReference: {fileID: 1447346414}
@@ -7114,7 +7119,7 @@ GameObject:
   - component: {fileID: 599924173}
   - component: {fileID: 599924172}
   m_Layer: 5
-  m_Name: Big Timer
+  m_Name: Timer_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25320,12 +25325,12 @@ PrefabInstance:
     - target: {fileID: 8210428698665366416, guid: 2f8f6c7ca6815214293f15db2ea6aee7,
         type: 3}
       propertyPath: max_time
-      value: 120
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8210428698665366416, guid: 2f8f6c7ca6815214293f15db2ea6aee7,
         type: 3}
       propertyPath: min_time
-      value: 120
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8210428698665366416, guid: 2f8f6c7ca6815214293f15db2ea6aee7,
         type: 3}
