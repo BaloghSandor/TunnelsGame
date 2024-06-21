@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
 
         stamina_bar.SetStamina(currentStamina);
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
         {
             MinusStamina(15f);
             stamina_recovery = false;
